@@ -1,3 +1,6 @@
+### Changes to Original
+- Added composer.json to make it installable through http://getcomposer.org 
+
 ### Outliners everywhere!
 
 I've long felt that every operating system and web browser should have a great outliner baked-in.  
