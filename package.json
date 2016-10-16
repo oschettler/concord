@@ -1,0 +1,19 @@
+{
+  "name": "concord",
+  "version": "1.0.0",
+  "description": "An outliner",
+  "main": "concord.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scripting/concord.git"
+  },
+  "author": "Dave Winer",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/scripting/concord/issues"
+  },
+  "homepage": "https://github.com/scripting/concord#readme"
+}
