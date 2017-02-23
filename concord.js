@@ -6,7 +6,7 @@ $(function () {
 			})
 		}
 	})
-$(function () { 
+$(function () {
 	if($.fn.popover !== undefined){
 		$("a[rel=popover]").on("mouseenter mouseleave", function(){$(this).popover("toggle")})
 		}
@@ -493,11 +493,11 @@ function ConcordEditor(root, concordInstance) {
 		root.find(".selection-toolbar").remove();
 		};
 	this.opml = function(_root, flsubsonly) {
-		
+
 		if (flsubsonly == undefined) { //8/5/13 by DW
 			flsubsonly = false;
 			}
-		
+
 		if(_root) {
 			root = _root;
 			}
@@ -532,11 +532,11 @@ function ConcordEditor(root, concordInstance) {
 		if(indent==undefined){
 			indent=0;
 			}
-		
+
 		if (flsubsonly == undefined) { //8/5/13 by DW
 			flsubsonly = false;
 			}
-		
+
 		var text = this.unescape(node.children(".concord-wrapper:first").children(".concord-text:first").html());
 		var textMatches = text.match(/^(.+)<br>\s*$/);
 		if(textMatches){
@@ -546,8 +546,8 @@ function ConcordEditor(root, concordInstance) {
 		for(var i=0; i < indent;i++){
 			opml += '\t';
 			}
-		
-		var subheads; 
+
+		var subheads;
 		if (!flsubsonly) { //8/5/13 by DW
 			opml += '<outline text="' + ConcordUtil.escapeXml(text) + '"';
 			var attributes = node.data("attributes");
@@ -571,20 +571,20 @@ function ConcordEditor(root, concordInstance) {
 		else {
 			subheads = node.children("ol").children(".concord-node");
 			}
-		
+
 		var editor = this;
 		indent++;
 		subheads.each(function() {
 			opml += editor.opmlLine($(this), indent);
 			});
-		
+
 		if (!flsubsonly) { //8/5/13 by DW
 			for(var i=0; i < indent;i++){
 				opml += '\t';
 				}
 			opml += '</outline>\n';
 			}
-		
+
 		return opml;
 		};
 	this.textLine = function(node, indent){
@@ -725,7 +725,7 @@ function ConcordEditor(root, concordInstance) {
 			child.appendTo(children);
 			});
 		if(collapsed){
-			if(outline.children("outline").size()>0){
+			if(outline.children("outline").length>0){
 				node.addClass("collapsed");
 				}
 			}
@@ -1442,7 +1442,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 	this.countSubs = function() {
 		var node = this.getCursor();
 		if(node.length == 1) {
-			return node.children("ol").children().size();
+			return node.children("ol").children().length;
 			}
 		return 0;
 		};
@@ -1591,7 +1591,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 		};
 	this.fullCollapse = function() {
 		root.find(".concord-node").each(function() {
-			if($(this).children("ol").children().size() > 0) {
+			if($(this).children("ol").children().length > 0) {
 				$(this).addClass("collapsed");
 				}
 			});
@@ -1708,7 +1708,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 				while(cursor && (nodeCount < count)) {
 					var cursor = this._walk_up(cursor);
 					if(cursor) {
-						if(!cursor.hasClass("collapsed") && (cursor.children("ol").children().size() > 0)) {
+						if(!cursor.hasClass("collapsed") && (cursor.children("ol").children().length > 0)) {
 							nodeCount++;
 							ableToMoveInDirection = true;
 							if(nodeCount == count) {
@@ -1737,7 +1737,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 						}
 					cursor = next;
 					if(cursor) {
-						if(!cursor.hasClass("collapsed") && (cursor.children("ol").children().size() > 0)) {
+						if(!cursor.hasClass("collapsed") && (cursor.children("ol").children().length > 0)) {
 							nodeCount++;
 							ableToMoveInDirection = true;
 							if(nodeCount == count) {
@@ -2289,7 +2289,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 	this.subsExpanded = function() {
 		var node = this.getCursor();
 		if(node.length == 1) {
-			if(!node.hasClass("collapsed") && (node.children("ol").children().size() > 0)) {
+			if(!node.hasClass("collapsed") && (node.children("ol").children().length > 0)) {
 				return true;
 				} else {
 					return false;
@@ -2326,7 +2326,7 @@ function ConcordOp(root, concordInstance, _cursor) {
 		var cursor = root.find(".concord-node:first");
 		do {
 			if(cursor) {
-				if(!cursor.hasClass("collapsed") && (cursor.children("ol").children().size() > 0)) {
+				if(!cursor.hasClass("collapsed") && (cursor.children("ol").children().length > 0)) {
 					expansionStates.push(nodeId);
 					}
 				nodeId++;
@@ -2450,11 +2450,11 @@ function ConcordOp(root, concordInstance, _cursor) {
 		this.markChanged();
 		};
 	this.xmlToOutline = function(xmlText, flSetFocus) { //2/22/14 by DW -- new param, flSetFocus
-		
+
 		if (flSetFocus == undefined) { //2/22/14 by DW
 			flSetFocus = true;
 			}
-		
+
 		var doc = null;
 		if(typeof xmlText == "string") {
 			doc = $($.parseXML(xmlText));
@@ -2508,11 +2508,11 @@ function ConcordOp(root, concordInstance, _cursor) {
 				} while(cursor!=null);
 			}
 		this.setTextMode(false);
-		
+
 		if (flSetFocus) {
 			this.setCursor(root.find(".concord-node:first"));
 			}
-		
+
 		root.data("currentChange", root.children().clone(true, true));
 		return true;
 		};
